@@ -437,9 +437,12 @@ read_model()
         #IMX296
         printf "model is MV-MIPI-IMX296\n";
     ;;
-    "178")
+    "376")
         #IMX178
-        printf "model is MV-MIPI-IMX178\n";
+        printf "model is MV-MIPI-IMX178M\n";
+    ;;
+    "304")
+        printf "model is MV-MIPI-SC130M\n";
     ;;
     *)
      printf " model %8x not recognized\n" $model;

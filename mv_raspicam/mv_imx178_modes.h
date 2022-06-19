@@ -1,6 +1,7 @@
 /*
 
 Copyright (c) 2021, xumm,Tianjin Zhonanyijia Tech.
+www.veye.cc
 All rights reserved.
 */
 
@@ -11,11 +12,6 @@ All rights reserved.
 #define IMX178_FULL_WIDTH  3088
 #define IMX178_FULL_HEIGHT  2064
 
-//#define IMX178_FULL_WIDTH  1920
-//#define IMX178_FULL_HEIGHT  1080
-
-//#define IMX178_FULL_WIDTH  1456
-//#define IMX178_FULL_HEIGHT  1088
 
 struct sensor_regs mv_imx178_common_init[] =
 {

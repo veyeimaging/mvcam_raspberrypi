@@ -119,10 +119,12 @@ struct sensor_def
 
 #include "mv_imx296_modes.h"
 #include "mv_imx178_modes.h"
+#include "mv_sc130_modes.h"
 
 const struct sensor_def *sensors[] = {
 	&mv_imx296,
     &mv_imx178,
+    &mv_sc130,
 	NULL
 };
 
@@ -1486,7 +1488,6 @@ int main(int argc, char** argv) {
 	MMAL_PARAMETER_CAMERA_RX_CONFIG_T rx_cfg;
 	MMAL_PARAMETER_CAMERA_RX_TIMING_T rx_timing;
 	unsigned int i;
-
 
 
 	status = mmal_component_create("vc.ril.rawcam", &rawcam);

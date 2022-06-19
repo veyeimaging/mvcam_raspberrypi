@@ -13,7 +13,7 @@ for num in range(0,10):
 
     GPIO.output(21,GPIO.HIGH)
 
-    time.sleep(0.01)
+    time.sleep(0.001)
 
     GPIO.output(21,GPIO.LOW)
 

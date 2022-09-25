@@ -15,9 +15,5 @@ All rights reserved.
 #define Image_Direction (0x828)
 #define Image_Acquisition (0x400)
 
-
-
-
-
 #endif
 

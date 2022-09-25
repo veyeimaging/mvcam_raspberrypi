@@ -4,27 +4,27 @@ Copyright (c) 2021, xumm,Tianjin Zhonanyijia Tech.
 All rights reserved.
 */
 
-#ifndef MV_IMX296_MODES_H_
-#define MV_IMX296_MODES_H_
+#ifndef RAW_SC132_MODES_H_
+#define RAW_SC132_MODES_H_
 #include "mv_regs.h"   
 
+//TODO
+#define SC132_FULL_WIDTH  1456
+#define SC132_FULL_HEIGHT  1088
 
-#define IMX296_FULL_WIDTH  1456
-#define IMX296_FULL_HEIGHT  1088
-
-struct sensor_regs mv_imx296_common_init[] =
+struct sensor_regs raw_sc132_common_init[] =
 {
     
 };
 
-struct sensor_regs mv_imx296_full_8bit_regs[] = 
+struct sensor_regs raw_sc132_full_8bit_regs[] = 
 {
     {Image_Acquisition, 0x00},  /* stop */
     {Pixel_Format,0x0},
     {Image_Acquisition, 0x01},  /* start */
 };
 
-struct sensor_regs mv_imx296_full_10bit_regs[] = 
+struct sensor_regs raw_sc132_full_10bit_regs[] = 
 {
     {Image_Acquisition, 0x00},  /* stop */
     {Pixel_Format,0x1},
@@ -33,21 +33,21 @@ struct sensor_regs mv_imx296_full_10bit_regs[] =
 
 
 //default value
-struct sensor_regs mv_imx296_roi_regs[] = 
+struct sensor_regs raw_sc132_roi_regs[] = 
 {
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
-    {ROI_Width, IMX296_FULL_WIDTH},
-    {ROI_Height, IMX296_FULL_HEIGHT},
+    {ROI_Width, SC132_FULL_WIDTH},
+    {ROI_Height, SC132_FULL_HEIGHT},
 };
 
-struct mode_def mv_imx296_modes[] = {
+struct mode_def raw_sc132_modes[] = {
     {
-      .regs          = mv_imx296_full_8bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx296_full_8bit_regs),
+      .regs          = raw_sc132_full_8bit_regs,
+      .num_regs      = NUM_ELEMENTS(raw_sc132_full_8bit_regs),
       
-      .width         = IMX296_FULL_WIDTH,//
-      .height        = IMX296_FULL_HEIGHT,//
+      .width         = SC132_FULL_WIDTH,//
+      .height        = SC132_FULL_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y10,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 8,// 
@@ -60,11 +60,11 @@ struct mode_def mv_imx296_modes[] = {
       .black_level   = 0x3C,
    },
    {
-      .regs          = mv_imx296_full_10bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx296_full_10bit_regs),
+      .regs          = raw_sc132_full_10bit_regs,
+      .num_regs      = NUM_ELEMENTS(raw_sc132_full_10bit_regs),
       
-      .width         = IMX296_FULL_WIDTH,//
-      .height        = IMX296_FULL_HEIGHT,//
+      .width         = SC132_FULL_WIDTH,//
+      .height        = SC132_FULL_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y10,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 10,// 
@@ -78,21 +78,21 @@ struct mode_def mv_imx296_modes[] = {
    },
 };
 
-struct sensor_regs mv_imx296_stop[] = {
+struct sensor_regs raw_sc132_stop[] = {
       {Image_Acquisition, 0x00},          /* disable streaming  */
 };
 
-struct sensor_def mv_imx296 = {
-      .name =                 "mv_imx296",
-      .common_init =          mv_imx296_common_init,
-      .num_common_init =      NUM_ELEMENTS(mv_imx296_common_init),
-      .modes =                mv_imx296_modes,
-      .num_modes =            NUM_ELEMENTS(mv_imx296_modes),
-      .stop =                 mv_imx296_stop,
-      .num_stop_regs =        NUM_ELEMENTS(mv_imx296_stop),
+struct sensor_def raw_sc132 = {
+      .name =                 "raw_sc132",
+      .common_init =          raw_sc132_common_init,
+      .num_common_init =      NUM_ELEMENTS(raw_sc132_common_init),
+      .modes =                raw_sc132_modes,
+      .num_modes =            NUM_ELEMENTS(raw_sc132_modes),
+      .stop =                 raw_sc132_stop,
+      .num_stop_regs =        NUM_ELEMENTS(raw_sc132_stop),
 
-      .roi = mv_imx296_roi_regs,
-	  .num_roi_regs = NUM_ELEMENTS(mv_imx296_roi_regs),
+      .roi = raw_sc132_roi_regs,
+	  .num_roi_regs = NUM_ELEMENTS(raw_sc132_roi_regs),
 	  
       .i2c_addr =             0x3b,
       .i2c_addressing =       2,
@@ -102,7 +102,7 @@ struct sensor_def mv_imx296 = {
       
       
       .i2c_ident_reg =        Model_Name,
-      .i2c_ident_value =      0x296,
+      .i2c_ident_value =      0x8132,
 
       .vflip_reg =            Image_Direction,
       .vflip_reg_bit =        1,

@@ -120,11 +120,16 @@ struct sensor_def
 #include "mv_imx296_modes.h"
 #include "mv_imx178_modes.h"
 #include "mv_sc130_modes.h"
+#include "mv_imx265_modes.h"
+#include "raw_sc132_modes.h"
+
 
 const struct sensor_def *sensors[] = {
 	&mv_imx296,
     &mv_imx178,
     &mv_sc130,
+    &mv_imx265,
+    &raw_sc132,
 	NULL
 };
 
@@ -600,11 +605,13 @@ static void callback(MMAL_PORT_T *port, MMAL_BUFFER_HEADER_T *buffer)
 	MMAL_STATUS_T status;
 
     //xumm test mode cover test data
-   // vcos_log_error("Buffer add %x, len %d", buffer->data,buffer->length);
+    //vcos_log_error("Buffer add %x, len %d", buffer->data,buffer->length);
    // if(buffer->user_data)
    //     memset(buffer->user_data,2,buffer->length/2);
     //end
-	//vcos_log_error("Buffer %p returned, filled %d, timestamp %llu, flags %04X", buffer, buffer->length, buffer->pts, buffer->flags);
+	//vcos_log_error("Buffer %p returned, length %d, timestamp %llu, flags %04X", buffer, buffer->length, buffer->pts, buffer->flags);
+
+    // mmal will callback 1 frame + 1 frame metadata(no matter weather there are metadata on mipi csi interface)
 	if (cfg->capture)
 	{
 		if (!(buffer->flags&MMAL_BUFFER_HEADER_FLAG_CODECSIDEINFO) &&

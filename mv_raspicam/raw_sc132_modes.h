@@ -8,9 +8,11 @@ All rights reserved.
 #define RAW_SC132_MODES_H_
 #include "mv_regs.h"   
 
-//TODO
-#define SC132_FULL_WIDTH  1456
-#define SC132_FULL_HEIGHT  1088
+#define SC132_FULL_WIDTH  1080
+#define SC132_FULL_HEIGHT  1280
+
+#define SC132_FULL_WIDTH  1080
+#define SC132_FULL_HEIGHT  1280
 
 struct sensor_regs raw_sc132_common_init[] =
 {

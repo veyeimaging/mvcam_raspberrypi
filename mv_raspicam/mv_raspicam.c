@@ -121,6 +121,7 @@ struct sensor_def
 #include "mv_imx178_modes.h"
 #include "mv_sc130_modes.h"
 #include "mv_imx265_modes.h"
+#include "mv_imx264_modes.h"
 #include "raw_sc132_modes.h"
 
 
@@ -129,6 +130,7 @@ const struct sensor_def *sensors[] = {
     &mv_imx178,
     &mv_sc130,
     &mv_imx265,
+    &mv_imx264,
     &raw_sc132,
 	NULL
 };
@@ -2047,6 +2049,18 @@ int main(int argc, char** argv) {
 	buffers_to_rawcam(&dev);
 	buffers_to_isp_op(&yuv_cb);
 
+//test for mingtu
+/*int count  = 0;
+while(1){
+	start_camera_streaming(sensor, sensor_mode);
+
+	vcos_sleep(1*1000);
+    vcos_log_error("count is %d\r\n",++count);
+	stop_camera_streaming(sensor);
+    vcos_sleep(1*1000);
+
+}*/
+//end
 	start_camera_streaming(sensor, sensor_mode);
 
 	for(i = 0; i < cfg.timeout; ++i)

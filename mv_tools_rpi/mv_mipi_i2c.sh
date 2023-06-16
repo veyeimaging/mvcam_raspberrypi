@@ -789,7 +789,7 @@ write_trgone()
 {
     local res=0;
 	res=$(./i2c_4write $I2C_DEV $I2C_ADDR $Trigger_Software 1);
-    printf "w trigger one  %d \n" $PARAM1;
+    printf "w trigger one \n" ;
 }
 
 read_trgcount()

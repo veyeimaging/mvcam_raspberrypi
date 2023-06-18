@@ -146,14 +146,15 @@ i2cset -y $I2C_DEV $SER_ADDR 0x06 0x01 b
 i2cset -y $I2C_DEV $SER_ADDR 0x27 0x00 b
 i2cset -y $I2C_DEV $SER_ADDR 0x1D 0x00 b
 i2cset -y $I2C_DEV $SER_ADDR 0x1E 0x00 b
-i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x0F b
-i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x0C b
-i2cset -y $I2C_DEV $SER_ADDR 0x3F 0x0F b
 
 if [ $IO_MODE -ne 1 ]; then
-    i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x0F b
-    i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x0C b
+    i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x0D b
+    i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x2C b
     i2cset -y $I2C_DEV $SER_ADDR 0x3F 0x0F b
+else
+    i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x00 b
+    i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x24 b
+    i2cset -y $I2C_DEV $SER_ADDR 0x3F 0x07 b
 fi
 
 # [ Rx Register Settings]
@@ -208,10 +209,12 @@ i2cset -y $I2C_DEV $DES_ADDR 0x17 0x04 0x11 i
 
 if [ $IO_MODE -ne 1 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x44 i
-    i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x33 i
-    i2cset -y $I2C_DEV $DES_ADDR 0x00 0x1B 0x18 i
+    i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x03 i
+else
+    i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x00 i
+    i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x00 i
 fi
-
+i2cset -y $I2C_DEV $DES_ADDR 0x00 0x1B 0x18 i
 i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x44 i
 i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x33 i
 i2cset -y $I2C_DEV $DES_ADDR 0x00 0x1B 0x18 i

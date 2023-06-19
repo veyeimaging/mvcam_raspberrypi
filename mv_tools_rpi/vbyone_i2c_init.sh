@@ -114,18 +114,20 @@ i2cset -y $I2C_DEV $SER_ADDR 0x76 0x10 b
 # [PLL Settings for Pass Through mode]
 i2cset -y $I2C_DEV $SER_ADDR 0x0F 0x01 b
 
-if [ $CAM_MIPI_DATARATE -ne 1500 ]; then
+if [ $CAM_MIPI_DATARATE -eq 1500 ]; then
     i2cset -y $I2C_DEV $SER_ADDR 0x11 0x29 b
     i2cset -y $I2C_DEV $SER_ADDR 0x12 0xAA b
     i2cset -y $I2C_DEV $SER_ADDR 0x13 0xAA b
     i2cset -y $I2C_DEV $SER_ADDR 0x14 0xAA b
     i2cset -y $I2C_DEV $SER_ADDR 0x15 0x43 b
-elif [ $CAM_MIPI_DATARATE -ne 1188 ]; then
+    #echo "mipi 1500!!"
+elif [ $CAM_MIPI_DATARATE -eq 1188 ]; then
     i2cset -y $I2C_DEV $SER_ADDR 0x11 0x2C b
     i2cset -y $I2C_DEV $SER_ADDR 0x12 0x00 b
     i2cset -y $I2C_DEV $SER_ADDR 0x13 0x00 b
     i2cset -y $I2C_DEV $SER_ADDR 0x14 0x00 b
     i2cset -y $I2C_DEV $SER_ADDR 0x15 0x44 b
+    #echo "mipi 1188!!"
 else
     echo "Error: Invalid CAM_MIPI_DATARATE value. EXIT!!"
     exit 1
@@ -147,14 +149,16 @@ i2cset -y $I2C_DEV $SER_ADDR 0x27 0x00 b
 i2cset -y $I2C_DEV $SER_ADDR 0x1D 0x00 b
 i2cset -y $I2C_DEV $SER_ADDR 0x1E 0x00 b
 
-if [ $IO_MODE -ne 1 ]; then
+if [ $IO_MODE -eq 1 ]; then
     i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x0D b
     i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x2C b
     i2cset -y $I2C_DEV $SER_ADDR 0x3F 0x0F b
+    #echo "IO_MODE is 1!!"
 else
     i2cset -y $I2C_DEV $SER_ADDR 0x3D 0x00 b
     i2cset -y $I2C_DEV $SER_ADDR 0x3E 0x24 b
     i2cset -y $I2C_DEV $SER_ADDR 0x3F 0x07 b
+    #echo "IO_MODE is 0!!"
 fi
 
 # [ Rx Register Settings]
@@ -179,7 +183,7 @@ i2cset -y $I2C_DEV $DES_ADDR 0x16 0x05 0x29 i
 i2cset -y $I2C_DEV $DES_ADDR 0x16 0x06 0x44 i
 i2cset -y $I2C_DEV $DES_ADDR 0x16 0x1F 0x00 i
 
-if [ $CAM_MIPI_DATARATE -ne 1500 ]; then
+if [ $CAM_MIPI_DATARATE -eq 1500 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x09 0x0E i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x0A 0x18 i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x0B 0x0C i
@@ -189,7 +193,8 @@ if [ $CAM_MIPI_DATARATE -ne 1500 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x10 0x05 i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x11 0x1A i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x12 0x0D i
-elif [ $CAM_MIPI_DATARATE -ne 1188 ]; then
+    #echo "mipi 1500!!"
+elif [ $CAM_MIPI_DATARATE -eq 1188 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x09 0x0B i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x0A 0x12 i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x0B 0x0A i
@@ -199,6 +204,7 @@ elif [ $CAM_MIPI_DATARATE -ne 1188 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x10 0x04 i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x11 0x14 i
     i2cset -y $I2C_DEV $DES_ADDR 0x16 0x12 0x0B i
+    #echo "mipi 1188!!"
 else
     echo "Error: Invalid CAM_MIPI_DATARATE value. EXIT!!"
     exit 1
@@ -207,12 +213,14 @@ fi
 i2cset -y $I2C_DEV $DES_ADDR 0x17 0x03 0x01 i
 i2cset -y $I2C_DEV $DES_ADDR 0x17 0x04 0x11 i
 
-if [ $IO_MODE -ne 1 ]; then
+if [ $IO_MODE -eq 1 ]; then
     i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x44 i
     i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x03 i
+    #echo "IO_MODE is 1!!"
 else
     i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x00 i
     i2cset -y $I2C_DEV $DES_ADDR 0x10 0x04 0x00 i
+     #echo "IO_MODE is 0!!"
 fi
 i2cset -y $I2C_DEV $DES_ADDR 0x00 0x1B 0x18 i
 i2cset -y $I2C_DEV $DES_ADDR 0x10 0x03 0x44 i

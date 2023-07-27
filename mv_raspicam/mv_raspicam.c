@@ -124,6 +124,8 @@ struct sensor_def
 #include "mv_imx264_modes.h"
 #include "mv_imx287_modes.h"
 #include "raw_sc132_modes.h"
+#include "raw_ar0234_modes.h"
+#include "raw_imx462_modes.h"
 
 
 const struct sensor_def *sensors[] = {
@@ -134,6 +136,8 @@ const struct sensor_def *sensors[] = {
     &mv_imx264,
     &mv_imx287,
     &raw_sc132,
+    &raw_ar0234,
+    &raw_imx462,
 	NULL
 };
 
@@ -499,11 +503,12 @@ void set_camera_roi(const struct sensor_def *sensor,RASPIRAW_PARAMS_T * pcfg)
         sensor->roi[0].data = pcfg->sensor_roi.x;
         sensor->roi[1].data = pcfg->sensor_roi.y;
         sensor->roi[2].data = pcfg->sensor_roi.width;
-        sensor->roi[3].data = pcfg->sensor_roi.height;
+//        sensor->roi[3].data is msleep
+        sensor->roi[4].data = pcfg->sensor_roi.height;
     }
     
     send_regs(fd, sensor, sensor->roi, sensor->num_roi_regs);
-  //  vcos_log_error("send_regs roi use %d,%d width %d height %d", sensor->roi[0].data,sensor->roi[1].data,sensor->roi[2].data,sensor->roi[3].data);
+  //  vcos_log_error("send_regs roi use %d,%d width %d height %d", sensor->roi[0].data,sensor->roi[1].data,sensor->roi[2].data,sensor->roi[4].data);
 	//send_regs(fd, sensor, sensor->stop, sensor->num_stop_regs);
     
 	close(fd);
@@ -1398,7 +1403,7 @@ int main(int argc, char** argv) {
  //       sensor_mode->height = cfg.sensor_roi.height;
         
         sensor_mode->width = sensor->roi[2].data;
-        sensor_mode->height = sensor->roi[3].data;
+        sensor_mode->height = sensor->roi[4].data;
         //.min_vts need update too
         //.line_time_ns
         vcos_log_error("use width %d height %d", sensor_mode->width,sensor_mode->height);
@@ -1434,7 +1439,7 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	if (cfg.fps > 0)
+	if ((cfg.fps > 0) && sensor->vts_reg)
 	{
 		int n = 1000000000 / (sensor_mode->line_time_ns * cfg.fps);
 		modReg(sensor_mode, sensor->vts_reg+0, 0, 7, n>>8, EQUAL);
@@ -1909,7 +1914,6 @@ int main(int argc, char** argv) {
 		vcos_log_error("Failed to enable isp ip port");
 		goto pool_destroy;
 	}
-
 
 	//Set up YUV/RGB processing outputs
 	yuv_pool = mmal_port_pool_create(isp->output[0], isp->output[0]->buffer_num, 0);

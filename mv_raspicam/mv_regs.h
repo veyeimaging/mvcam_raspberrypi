@@ -14,6 +14,7 @@ All rights reserved.
 #define ROI_Offset_Y (0x824)
 #define Image_Direction (0x828)
 #define Image_Acquisition (0x400)
+#define Lane_Num (0x83C)
 
 #endif
 

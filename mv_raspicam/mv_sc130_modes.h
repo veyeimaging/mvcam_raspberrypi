@@ -37,6 +37,7 @@ struct sensor_regs mv_sc130_roi_regs[] =
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
     {ROI_Width, SC130_FULL_WIDTH},
+    {0xFFFE,10},//sleep 10ms
     {ROI_Height, SC130_FULL_HEIGHT},
 };
 

@@ -40,6 +40,7 @@ struct sensor_regs raw_sc132_roi_regs[] =
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
     {ROI_Width, SC132_FULL_WIDTH},
+    {0xFFFE,10},//sleep 10ms
     {ROI_Height, SC132_FULL_HEIGHT},
 };
 

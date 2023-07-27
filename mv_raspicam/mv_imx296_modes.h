@@ -38,6 +38,7 @@ struct sensor_regs mv_imx296_roi_regs[] =
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
     {ROI_Width, IMX296_FULL_WIDTH},
+    {0xFFFE,10},//sleep 10ms
     {ROI_Height, IMX296_FULL_HEIGHT},
 };
 
@@ -57,7 +58,7 @@ struct mode_def mv_imx296_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
    {
       .regs          = mv_imx296_full_10bit_regs,
@@ -74,7 +75,7 @@ struct mode_def mv_imx296_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
 };
 

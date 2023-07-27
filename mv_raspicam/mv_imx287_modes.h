@@ -1,37 +1,35 @@
 /*
-    Copyright (c) 2022, xumm,Tianjin Zhonanyijia Tech.
-    www.veye.cc
-    All rights reserved.
+Copyright (c) 2022, xumm,Tianjin Zhonanyijia Tech.
+All rights reserved.
 */
 
-#ifndef MV_IMX264_MODES_H_
-#define MV_IMX264_MODES_H_
+#ifndef MV_IMX287_MODES_H_
+#define MV_IMX287_MODES_H_
 #include "mv_regs.h"   
 
+#define IMX287_FULL_WIDTH  704
+#define IMX287_FULL_HEIGHT  544
 
-#define IMX264_FULL_WIDTH  2432
-#define IMX264_FULL_HEIGHT  2056
-
-struct sensor_regs mv_imx264_common_init[] =
+struct sensor_regs mv_imx287_common_init[] =
 {
     
 };
 
-struct sensor_regs mv_imx264_full_8bit_regs[] = 
+struct sensor_regs mv_imx287_full_8bit_regs[] = 
 {
     {Image_Acquisition, 0x00},  /* stop */
     {Pixel_Format,0x0},
     {Image_Acquisition, 0x01},  /* start */
 };
 
-struct sensor_regs mv_imx264_full_10bit_regs[] = 
+struct sensor_regs mv_imx287_full_10bit_regs[] = 
 {
     {Image_Acquisition, 0x00},  /* stop */
     {Pixel_Format,0x1},
     {Image_Acquisition, 0x01},  /* start */
 };
 
-struct sensor_regs mv_imx264_full_12bit_regs[] = 
+struct sensor_regs mv_imx287_full_12bit_regs[] = 
 {
     {Image_Acquisition, 0x00},  /* stop */
     {Pixel_Format,0x2},
@@ -39,22 +37,22 @@ struct sensor_regs mv_imx264_full_12bit_regs[] =
 };
 
 //default value
-struct sensor_regs mv_imx264_roi_regs[] = 
+struct sensor_regs mv_imx287_roi_regs[] = 
 {
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
-    {ROI_Width, IMX264_FULL_WIDTH},
+    {ROI_Width, IMX287_FULL_WIDTH},
     {0xFFFE,10},//sleep 10ms
-    {ROI_Height, IMX264_FULL_HEIGHT},
+    {ROI_Height, IMX287_FULL_HEIGHT},
 };
 
-struct mode_def mv_imx264_modes[] = {
+struct mode_def mv_imx287_modes[] = {
    {
-      .regs          = mv_imx264_full_8bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx264_full_10bit_regs),
+      .regs          = mv_imx287_full_8bit_regs,
+      .num_regs      = NUM_ELEMENTS(mv_imx287_full_10bit_regs),
       
-      .width         = IMX264_FULL_WIDTH,//
-      .height        = IMX264_FULL_HEIGHT,//
+      .width         = IMX287_FULL_WIDTH,//
+      .height        = IMX287_FULL_HEIGHT,//
       .encoding      = 0,//
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 8,// 
@@ -67,11 +65,11 @@ struct mode_def mv_imx264_modes[] = {
       .black_level   = 0,
    },
    {
-      .regs          = mv_imx264_full_10bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx264_full_10bit_regs),
+      .regs          = mv_imx287_full_10bit_regs,
+      .num_regs      = NUM_ELEMENTS(mv_imx287_full_10bit_regs),
       
-      .width         = IMX264_FULL_WIDTH,//
-      .height        = IMX264_FULL_HEIGHT,//
+      .width         = IMX287_FULL_WIDTH,//
+      .height        = IMX287_FULL_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y10,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 10,// 
@@ -84,11 +82,11 @@ struct mode_def mv_imx264_modes[] = {
       .black_level   = 0,
    },
    {
-      .regs          = mv_imx264_full_12bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx264_full_10bit_regs),
+      .regs          = mv_imx287_full_12bit_regs,
+      .num_regs      = NUM_ELEMENTS(mv_imx287_full_10bit_regs),
       
-      .width         = IMX264_FULL_WIDTH,//
-      .height        = IMX264_FULL_HEIGHT,//
+      .width         = IMX287_FULL_WIDTH,//
+      .height        = IMX287_FULL_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y10,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 12,// 
@@ -102,21 +100,21 @@ struct mode_def mv_imx264_modes[] = {
    },
 };
 
-struct sensor_regs mv_imx264_stop[] = {
+struct sensor_regs mv_imx287_stop[] = {
       {Image_Acquisition, 0x00},          /* disable streaming  */
 };
 
-struct sensor_def mv_imx264 = {
-      .name =                 "mv_imx264",
-      .common_init =          mv_imx264_common_init,
-      .num_common_init =      NUM_ELEMENTS(mv_imx264_common_init),
-      .modes =                mv_imx264_modes,
-      .num_modes =            NUM_ELEMENTS(mv_imx264_modes),
-      .stop =                 mv_imx264_stop,
-      .num_stop_regs =        NUM_ELEMENTS(mv_imx264_stop),
+struct sensor_def mv_imx287 = {
+      .name =                 "mv_imx287",
+      .common_init =          mv_imx287_common_init,
+      .num_common_init =      NUM_ELEMENTS(mv_imx287_common_init),
+      .modes =                mv_imx287_modes,
+      .num_modes =            NUM_ELEMENTS(mv_imx287_modes),
+      .stop =                 mv_imx287_stop,
+      .num_stop_regs =        NUM_ELEMENTS(mv_imx287_stop),
 
-      .roi = mv_imx264_roi_regs,
-	  .num_roi_regs = NUM_ELEMENTS(mv_imx264_roi_regs),
+      .roi = mv_imx287_roi_regs,
+	  .num_roi_regs = NUM_ELEMENTS(mv_imx287_roi_regs),
 	  
       .i2c_addr =             0x3b,
       .i2c_addressing =       2,
@@ -126,7 +124,7 @@ struct sensor_def mv_imx264 = {
       
       
       .i2c_ident_reg =        Model_Name,
-      .i2c_ident_value =      0x264,
+      .i2c_ident_value =      0x287,
 
       .vflip_reg =            Image_Direction,
       .vflip_reg_bit =        1,

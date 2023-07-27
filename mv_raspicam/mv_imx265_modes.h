@@ -43,6 +43,7 @@ struct sensor_regs mv_imx265_roi_regs[] =
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
     {ROI_Width, IMX265_FULL_WIDTH},
+    {0xFFFE,10},//sleep 10ms
     {ROI_Height, IMX265_FULL_HEIGHT},
 };
 

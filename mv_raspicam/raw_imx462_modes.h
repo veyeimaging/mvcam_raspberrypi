@@ -7,8 +7,8 @@ All rights reserved.
 #define RAW_IMX462_MODES_H_
 #include "mv_regs.h"   
 
-#define IMX462_FULL_WIDTH  1944
-#define IMX462_FULL_HEIGHT  1096
+#define IMX462_DEFAULT_WIDTH  1920
+#define IMX462_DEFAULT_HEIGHT  1088
 
 struct sensor_regs raw_imx462_common_init[] =
 {
@@ -50,9 +50,9 @@ struct sensor_regs raw_imx462_roi_regs[] =
 {
     {ROI_Offset_X, 0x00},
     {ROI_Offset_Y, 0x00},
-    {ROI_Width, IMX462_FULL_WIDTH},
+    {ROI_Width, IMX462_DEFAULT_WIDTH},
     {0xFFFE,10},//sleep 10ms
-    {ROI_Height, IMX462_FULL_HEIGHT},
+    {ROI_Height, IMX462_DEFAULT_HEIGHT},
 };
 
 struct mode_def raw_imx462_modes[] = {
@@ -62,8 +62,8 @@ struct mode_def raw_imx462_modes[] = {
       .regs          = raw_imx462_full_10bit_2lane_regs,
       .num_regs      = NUM_ELEMENTS(raw_imx462_full_10bit_2lane_regs),
       
-      .width         = IMX462_FULL_WIDTH,//
-      .height        = IMX462_FULL_HEIGHT,//
+      .width         = IMX462_DEFAULT_WIDTH,//
+      .height        = IMX462_DEFAULT_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y10,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 10,// 
@@ -81,8 +81,8 @@ struct mode_def raw_imx462_modes[] = {
       .regs          = raw_imx462_full_12bit_2lane_regs,
       .num_regs      = NUM_ELEMENTS(raw_imx462_full_12bit_2lane_regs),
       
-      .width         = IMX462_FULL_WIDTH,//
-      .height        = IMX462_FULL_HEIGHT,//
+      .width         = IMX462_DEFAULT_WIDTH,//
+      .height        = IMX462_DEFAULT_HEIGHT,//
       .encoding      = 0,//MMAL_ENCODING_Y12,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 12,// 
@@ -100,8 +100,8 @@ struct mode_def raw_imx462_modes[] = {
        .regs          = raw_imx462_full_10bit_4lane_regs,
        .num_regs      = NUM_ELEMENTS(raw_imx462_full_10bit_4lane_regs),
        
-       .width         = IMX462_FULL_WIDTH,//
-       .height        = IMX462_FULL_HEIGHT,//
+       .width         = IMX462_DEFAULT_WIDTH,//
+       .height        = IMX462_DEFAULT_HEIGHT,//
        .encoding      = 0,//MMAL_ENCODING_Y10,
        .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
        .native_bit_depth = 10,// 

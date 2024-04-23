@@ -8,7 +8,6 @@ All rights reserved.
 #define MV_IMX296_MODES_H_
 #include "mv_regs.h"   
 
-
 #define IMX296_FULL_WIDTH  1456
 #define IMX296_FULL_HEIGHT  1088
 
@@ -49,7 +48,7 @@ struct mode_def mv_imx296_modes[] = {
       
       .width         = IMX296_FULL_WIDTH,//
       .height        = IMX296_FULL_HEIGHT,//
-      .encoding      = 0,//MMAL_ENCODING_Y10,
+      .encoding      = 0,//MMAL_ENCODING_Y8,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 8,// 
       .image_id      = 0x2A,//raw10

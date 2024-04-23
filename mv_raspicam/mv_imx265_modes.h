@@ -50,7 +50,7 @@ struct sensor_regs mv_imx265_roi_regs[] =
 struct mode_def mv_imx265_modes[] = {
    {
       .regs          = mv_imx265_full_8bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx265_full_10bit_regs),
+      .num_regs      = NUM_ELEMENTS(mv_imx265_full_8bit_regs),
       
       .width         = IMX265_FULL_WIDTH,//
       .height        = IMX265_FULL_HEIGHT,//
@@ -63,7 +63,7 @@ struct mode_def mv_imx265_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
    {
       .regs          = mv_imx265_full_10bit_regs,
@@ -80,15 +80,15 @@ struct mode_def mv_imx265_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0}, 
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
    {
       .regs          = mv_imx265_full_12bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx265_full_10bit_regs),
+      .num_regs      = NUM_ELEMENTS(mv_imx265_full_12bit_regs),
       
       .width         = IMX265_FULL_WIDTH,//
       .height        = IMX265_FULL_HEIGHT,//
-      .encoding      = 0,//MMAL_ENCODING_Y10,
+      .encoding      = 0,//MMAL_ENCODING_Y12,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 12,// 
       .image_id      = 0x2C,//raw12
@@ -97,7 +97,7 @@ struct mode_def mv_imx265_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
 };
 

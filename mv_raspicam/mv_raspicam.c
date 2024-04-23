@@ -126,6 +126,7 @@ struct sensor_def
 #include "raw_sc132_modes.h"
 #include "raw_ar0234_modes.h"
 #include "raw_imx462_modes.h"
+#include "raw_sc535_modes.h"
 
 
 const struct sensor_def *sensors[] = {
@@ -138,6 +139,7 @@ const struct sensor_def *sensors[] = {
     &raw_sc132,
     &raw_ar0234,
     &raw_imx462,
+    &raw_sc535,
 	NULL
 };
 

@@ -60,7 +60,7 @@ struct mode_def raw_sc132_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
    {
       .regs          = raw_sc132_full_10bit_regs,
@@ -77,7 +77,7 @@ struct mode_def raw_sc132_modes[] = {
       .line_time_ns  = 14815,//1456 pixels per line
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
-      .black_level   = 0x3C,
+      .black_level   = 0,
    },
 };
 

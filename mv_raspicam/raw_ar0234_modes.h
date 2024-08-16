@@ -22,7 +22,6 @@ struct sensor_regs raw_ar0234_full_8bit_2lane_regs[] =
     {0xFFFE,400},//sleep 400ms
     {Lane_Num,0x2},
     {0xFFFE,400},//sleep 400ms
-
     {Image_Acquisition, 0x01},  /* start */
 };
 

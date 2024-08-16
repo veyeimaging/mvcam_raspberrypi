@@ -196,11 +196,12 @@
 ./mv_mipi_i2c.sh -r  outio2_rvs
 ./mv_mipi_i2c.sh -w  outio2_rvs [param1]
 
+./mv_mipi_i2c.sh -r  lanenum
+./mv_mipi_i2c.sh -w  lanenum  [2/4]
 ### Special function
 ./mv_mipi_i2c.sh -r  snsreg  [SensorAddr]
 
-./mv_mipi_i2c.sh -r  lanenum
-./mv_mipi_i2c.sh -w  lanenum  [2/4]
+./mv_mipi_i2c.sh -r framecount
 
 COMMENT_SAMPLE
 
@@ -270,6 +271,9 @@ Nondiscontinuous_mode=0x44C;
 Sensor_Reg_Addr=0x0450;
 Sensor_Reg_Val=0x454;
 Slave_mode=0x460;
+Sensor_Frame_Count=0x464;
+Out_Frame_Count=0x468;
+
 
 Test_Image_Selector=0x800;
 Pixel_Format=0x804;
@@ -1342,6 +1346,16 @@ write_slavemode()
     printf "w slave mode is %d \n" $PARAM1;
 }
 
+read_framecount()
+{
+    local sns_count=0;
+    local out_count=0;
+    typeset -i sns_count;
+    typeset -i out_count;
+	sns_count=$(./i2c_4read $I2C_DEV $I2C_ADDR $Sensor_Frame_Count 2>/dev/null);
+    out_count=$(./i2c_4read $I2C_DEV $I2C_ADDR $Out_Frame_Count 2>/dev/null);
+    printf "r Sensor framecount is %d , Out framecount is %d\n" $sns_count $out_count;
+}
 <<'COMMENT_SAMPLE'
 read_fun()
 {
@@ -1585,6 +1599,9 @@ if [ ${MODE} = "read" ] ; then
             ;;
         "slavemode")
             read_slavemode;
+            ;;
+        "framecount")
+            read_framecount;
             ;;
         *)
         echo "NOT SUPPORTED!";

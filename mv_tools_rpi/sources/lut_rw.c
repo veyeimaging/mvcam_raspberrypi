@@ -85,6 +85,17 @@ static int  send_regs(int fd,  const struct sensor_regs *regs, int num_regs)
     return ret;
 }
 
+U32 count_numbers(const char *str) {
+    U32 count = 0; // 
+    while (*str) {
+        if (*str == ',') {
+            count++;
+        }
+        str++;
+    }
+    return count;
+}
+
 U32 main(int argc, char *argv[])
 {
 	U32 I2C_port;
@@ -102,6 +113,7 @@ U32 main(int argc, char *argv[])
     FILE *filefp = NULL;
 	int result;
     int ret = 0;
+    U32 input_size = 0;
     struct sensor_regs regs;
 	if (argc < 4)
 	{
@@ -180,7 +192,15 @@ U32 main(int argc, char *argv[])
         }
         
         fread(buff, 5*MAX_BLK_BUFF_SIZE,1, filefp);
-
+        
+        input_size = count_numbers(buff);
+        if(input_size != lut_size)
+        {
+            fprintf(stdout,"LUT size mismatch!, should be %d ,input size is %d\r\n",lut_size,input_size);
+            ret = -1;
+            goto ERROR;
+        }
+        
         regs.reg = LUT_W_START_ADDR;
         regs.data = 1;
         ret |= send_regs(fd,&regs, 1);
@@ -189,7 +209,7 @@ U32 main(int argc, char *argv[])
         i = 0;
         while (record != NULL && i < lut_size)
         {
-           // fprintf(stderr,"i %d %s \r\n", i, record);//将读取到的每一个数据打印出来
+           // fprintf(stderr,"i %d %s \r\n", i, record);//
             //send to camera
             StrToNumber(record,&lut_val);
             regs.data = lut_val;

@@ -49,7 +49,7 @@ struct sensor_regs mv_imx287_roi_regs[] =
 struct mode_def mv_imx287_modes[] = {
    {
       .regs          = mv_imx287_full_8bit_regs,
-      .num_regs      = NUM_ELEMENTS(mv_imx287_full_10bit_regs),
+      .num_regs      = NUM_ELEMENTS(mv_imx287_full_8bit_regs),
       
       .width         = IMX287_FULL_WIDTH,//
       .height        = IMX287_FULL_HEIGHT,//
@@ -87,7 +87,7 @@ struct mode_def mv_imx287_modes[] = {
       
       .width         = IMX287_FULL_WIDTH,//
       .height        = IMX287_FULL_HEIGHT,//
-      .encoding      = 0,//MMAL_ENCODING_Y10,
+      .encoding      = 0,//MMAL_ENCODING_Y12,
       .order         = BAYER_ORDER_RGGB,//BAYER_ORDER_GRAY,
       .native_bit_depth = 12,// 
       .image_id      = 0x2C,//raw12

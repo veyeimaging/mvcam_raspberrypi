@@ -15,6 +15,7 @@ All rights reserved.
 #define Image_Direction (0x828)
 #define Image_Acquisition (0x400)
 #define Lane_Num (0x83C)
+#define ReadOut_Mode (0x838)
 
 #endif
 

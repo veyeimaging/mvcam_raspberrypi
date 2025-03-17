@@ -2,126 +2,122 @@
 #
 #This script is a simplified version of mv_mipi_i2c.sh, in which -f -p1 -p2 -p3 -p4 is no longer needed.
 <<'COMMENT_SAMPLE'
-./mv_mipi_i2c.sh -r  manufacturer
-./mv_mipi_i2c.sh -r  model
-./mv_mipi_i2c.sh -r  version
-./mv_mipi_i2c.sh -r  serialno
-./mv_mipi_i2c.sh -r  timestamp
-./mv_mipi_i2c.sh -r  errcode
-./mv_mipi_i2c.sh -r  fmtcap
+./mv_mipi_i2c_new.sh -r  manufacturer
+./mv_mipi_i2c_new.sh -r  model
+./mv_mipi_i2c_new.sh -r  version
+./mv_mipi_i2c_new.sh -r  serialno
+./mv_mipi_i2c_new.sh -r  timestamp
+./mv_mipi_i2c_new.sh -r  errcode
+./mv_mipi_i2c_new.sh -r  fmtcap
 
-./mv_mipi_i2c.sh -w  factoryparam
-./mv_mipi_i2c.sh -w  paramsave
-./mv_mipi_i2c.sh -w  reboot
+./mv_mipi_i2c_new.sh -w  factoryparam
+./mv_mipi_i2c_new.sh -w  paramsave
+./mv_mipi_i2c_new.sh -w  reboot
 
-./mv_mipi_i2c.sh -w  i2caddr  0x3c
-./mv_mipi_i2c.sh -r  i2caddr 
+./mv_mipi_i2c_new.sh -w  i2caddr  0x3c
+./mv_mipi_i2c_new.sh -r  i2caddr 
 
-# for raw camera only
-./mv_mipi_i2c.sh -w  mcubypass [param1]
-./mv_mipi_i2c.sh -r  mcubypass 
-
-./mv_mipi_i2c.sh -w  slavemode [param1]
-./mv_mipi_i2c.sh -r  slavemode 
+./mv_mipi_i2c_new.sh -w  slavemode [param1]
+./mv_mipi_i2c_new.sh -r  slavemode 
 
 ## =======================================
 ## image properties
 
 #start/stop image acq
-./mv_mipi_i2c.sh -w  imgacq [param1]
+./mv_mipi_i2c_new.sh -w  imgacq [param1]
 
-./mv_mipi_i2c.sh -r  maxwh
+./mv_mipi_i2c_new.sh -r  maxwh
 
-./mv_mipi_i2c.sh -r  maxfps
+./mv_mipi_i2c_new.sh -r  maxfps
 
 0 normal，
 1 mirror，
 2 flip，
 3 flip&mirror
-./mv_mipi_i2c.sh -w  imgdir  [0,3]
-./mv_mipi_i2c.sh -r  imgdir
+./mv_mipi_i2c_new.sh -w  imgdir  [0,3]
+./mv_mipi_i2c_new.sh -r  imgdir
 
 0 raw8
 1 raw10
 2 raw12
 3 raw14
 4 UYVY
-./mv_mipi_i2c.sh -w  pixelformat  [0,2]
-./mv_mipi_i2c.sh -r  pixelformat
+./mv_mipi_i2c_new.sh -w  pixelformat  [0,2]
+./mv_mipi_i2c_new.sh -r  pixelformat
 
-./mv_mipi_i2c.sh -w  blacklevel [param1]
-./mv_mipi_i2c.sh -r  blacklevel
+./mv_mipi_i2c_new.sh -w  blacklevel [param1]
+./mv_mipi_i2c_new.sh -r  blacklevel
 
-./mv_mipi_i2c.sh -w  roi  [x]  [y]  [width]  [height]
-./mv_mipi_i2c.sh -r  roi
+./mv_mipi_i2c_new.sh -w  roi  [x]  [y]  [width]  [height]
+./mv_mipi_i2c_new.sh -r  roi
 
 1 宽竖条纹
 2 细密竖条纹
-./mv_mipi_i2c.sh -w  testimg [param1]
-./mv_mipi_i2c.sh -r  testimg
+./mv_mipi_i2c_new.sh -w  testimg [param1]
+./mv_mipi_i2c_new.sh -r  testimg
 
-./mv_mipi_i2c.sh -w  fps [param1]
-./mv_mipi_i2c.sh -r  fps
+./mv_mipi_i2c_new.sh -w  fps [param1]
+./mv_mipi_i2c_new.sh -r  fps
 
-./mv_mipi_i2c.sh -r  clkmode
+./mv_mipi_i2c_new.sh -r  clkmode
 
 ## ======================================================
 ## ISP properties
-./mv_mipi_i2c.sh -r  gamma
-./mv_mipi_i2c.sh -w  gamma [param1]
+./mv_mipi_i2c_new.sh -r  gamma
+./mv_mipi_i2c_new.sh -w  gamma [param1]
 
-./mv_mipi_i2c.sh -r  gammaenable
-./mv_mipi_i2c.sh -w  gammaenable [param1]
+./mv_mipi_i2c_new.sh -r  gammaenable
+./mv_mipi_i2c_new.sh -w  gammaenable [param1]
 
-./mv_mipi_i2c.sh -r  dpcenable
-./mv_mipi_i2c.sh -w  dpcenable [param1]
+./mv_mipi_i2c_new.sh -r  dpcenable
+./mv_mipi_i2c_new.sh -w  dpcenable [param1]
 
-./mv_mipi_i2c.sh -r  lutenable
-./mv_mipi_i2c.sh -w  lutenable [param1]
+./mv_mipi_i2c_new.sh -r  lutenable
+./mv_mipi_i2c_new.sh -w  lutenable [param1]
 
-./mv_mipi_i2c.sh -r  lut  lut.txt
-./mv_mipi_i2c.sh -w  lut  lut.txt
+./mv_mipi_i2c_new.sh -r  lut  lut.txt
+./mv_mipi_i2c_new.sh -w  lut  lut.txt
 
 0 manual exposure
 1 auto exp once
 2 auto exp continuous
-./mv_mipi_i2c.sh -r  expmode
-./mv_mipi_i2c.sh -w  expmode [param1]
+./mv_mipi_i2c_new.sh -r  expmode
+./mv_mipi_i2c_new.sh -w  expmode [param1]
 
 0 manual gain
 1 auto gain once
 2 auto gain continuous
-./mv_mipi_i2c.sh -r  gainmode
-./mv_mipi_i2c.sh -w  gainmode [param1]
+./mv_mipi_i2c_new.sh -r  gainmode
+./mv_mipi_i2c_new.sh -w  gainmode [param1]
 
 # read back to confirm the real metime take effect
-./mv_mipi_i2c.sh -w  metime [us]
-./mv_mipi_i2c.sh -r  metime
+./mv_mipi_i2c_new.sh -w  metime [us]
+./mv_mipi_i2c_new.sh -r  metime
 
 # read back to confirm the real mgain take effect
-./mv_mipi_i2c.sh -w  mgain  [gain]
-./mv_mipi_i2c.sh -r  mgain
+./mv_mipi_i2c_new.sh -w  mgain  [gain]
+./mv_mipi_i2c_new.sh -r  mgain
 
-./mv_mipi_i2c.sh -r  aatarget
-./mv_mipi_i2c.sh -w  aatarget [1,255]
+./mv_mipi_i2c_new.sh -r  aatarget
+./mv_mipi_i2c_new.sh -w  aatarget [1,255]
 
-./mv_mipi_i2c.sh -r  aemaxtime
-./mv_mipi_i2c.sh -w  aemaxtime [param1]
+./mv_mipi_i2c_new.sh -r  aemaxtime
+./mv_mipi_i2c_new.sh -w  aemaxtime [param1]
 
-./mv_mipi_i2c.sh -r  exptime
-./mv_mipi_i2c.sh -r  curgain
+./mv_mipi_i2c_new.sh -r  exptime
+./mv_mipi_i2c_new.sh -r  curgain
 
-./mv_mipi_i2c.sh -r  agmaxgain
-./mv_mipi_i2c.sh -w  agmaxgain [param1]
+./mv_mipi_i2c_new.sh -r  agmaxgain
+./mv_mipi_i2c_new.sh -w  agmaxgain [param1]
 
-./mv_mipi_i2c.sh -w  aaroi  [x] [y] [width] [height]
-./mv_mipi_i2c.sh -r  aaroi
+./mv_mipi_i2c_new.sh -w  aaroi  [x] [y] [width] [height]
+./mv_mipi_i2c_new.sh -r  aaroi
 
-./mv_mipi_i2c.sh -w  aaroienable [0,1]
-./mv_mipi_i2c.sh -r  aaroienable
+./mv_mipi_i2c_new.sh -w  aaroienable [0,1]
+./mv_mipi_i2c_new.sh -r  aaroienable
 
 #run ae ag once and save as manual value
-./mv_mipi_i2c.sh -w  aeag_run_once_save
+./mv_mipi_i2c_new.sh -w  aeag_run_once_save
 
 ### ======================
 ### trigger properties 
@@ -129,79 +125,96 @@
 0 continuous
 1 trigger mode
 2 high speed trigger mode
-./mv_mipi_i2c.sh -w  trgmode [param1]
-./mv_mipi_i2c.sh -r  trgmode
+./mv_mipi_i2c_new.sh -w  trgmode [param1]
+./mv_mipi_i2c_new.sh -r  trgmode
 
 0 software trigger
 1 hardware trigger
-./mv_mipi_i2c.sh -w  trgsrc [param1]
-./mv_mipi_i2c.sh -r  trgsrc
+./mv_mipi_i2c_new.sh -w  trgsrc [param1]
+./mv_mipi_i2c_new.sh -r  trgsrc
 
-./mv_mipi_i2c.sh -w  trgnum [param1]
-./mv_mipi_i2c.sh -r  trgnum
+./mv_mipi_i2c_new.sh -w  trgnum [param1]
+./mv_mipi_i2c_new.sh -r  trgnum
 
-./mv_mipi_i2c.sh -w  trginterval [param1]
-./mv_mipi_i2c.sh -r  trginterval
+./mv_mipi_i2c_new.sh -w  trginterval [param1]
+./mv_mipi_i2c_new.sh -r  trginterval
 
-./mv_mipi_i2c.sh -w  trgone
+./mv_mipi_i2c_new.sh -w  trgone
 
-./mv_mipi_i2c.sh -r  trgcount
-./mv_mipi_i2c.sh -w  trgcountclr
+./mv_mipi_i2c_new.sh -r  trgcount
+./mv_mipi_i2c_new.sh -w  trgcountclr
 
-./mv_mipi_i2c.sh -r  trgdelay
-./mv_mipi_i2c.sh -w  trgdelay [param1]
+./mv_mipi_i2c_new.sh -r  trgdelay
+./mv_mipi_i2c_new.sh -w  trgdelay [param1]
 
 0 Rising edge
 1 Falling edge
-./mv_mipi_i2c.sh -r  trgedge
-./mv_mipi_i2c.sh -w  trgedge [param1]
+./mv_mipi_i2c_new.sh -r  trgedge
+./mv_mipi_i2c_new.sh -w  trgedge [param1]
 
-./mv_mipi_i2c.sh -r  trgfilter_enable
-./mv_mipi_i2c.sh -w  trgfilter_enable [param1]
+./mv_mipi_i2c_new.sh -r  trgfilter_enable
+./mv_mipi_i2c_new.sh -w  trgfilter_enable [param1]
 
-./mv_mipi_i2c.sh -r  trgfilter_time
-./mv_mipi_i2c.sh -w  trgfilter_time [param1]
+./mv_mipi_i2c_new.sh -r  trgfilter_time
+./mv_mipi_i2c_new.sh -w  trgfilter_time [param1]
 
-./mv_mipi_i2c.sh -r  trgexp_delay
-./mv_mipi_i2c.sh -w  trgexp_delay [param1]
+./mv_mipi_i2c_new.sh -r  trgexp_delay
+./mv_mipi_i2c_new.sh -w  trgexp_delay [param1]
 
-./mv_mipi_i2c.sh -r  gpios_status
+./mv_mipi_i2c_new.sh -r  gpios_status
 
 0 strobe 
 1 userdef
-./mv_mipi_i2c.sh -r  outio1_mode
-./mv_mipi_i2c.sh -w  outio1_mode [param1]
+./mv_mipi_i2c_new.sh -r  outio1_mode
+./mv_mipi_i2c_new.sh -w  outio1_mode [param1]
 
 0 low
 1 high
-./mv_mipi_i2c.sh -r  outio1_usr
-./mv_mipi_i2c.sh -w  outio1_usr [param1]
+./mv_mipi_i2c_new.sh -r  outio1_usr
+./mv_mipi_i2c_new.sh -w  outio1_usr [param1]
 
-./mv_mipi_i2c.sh -r  outio1_rvs
-./mv_mipi_i2c.sh -w  outio1_rvs [param1]
+./mv_mipi_i2c_new.sh -r  outio1_rvs
+./mv_mipi_i2c_new.sh -w  outio1_rvs [param1]
 
 0 strobe 
 1 userdef
 2 trigger wait
 3 XVS
 4 XHS
-./mv_mipi_i2c.sh -r  outio2_mode
-./mv_mipi_i2c.sh -w  outio2_mode [param1]
+./mv_mipi_i2c_new.sh -r  outio2_mode
+./mv_mipi_i2c_new.sh -w  outio2_mode [param1]
 
 0 low
 1 high
-./mv_mipi_i2c.sh -r  outio2_usr
-./mv_mipi_i2c.sh -w  outio2_usr [param1]
+./mv_mipi_i2c_new.sh -r  outio2_usr
+./mv_mipi_i2c_new.sh -w  outio2_usr [param1]
 
-./mv_mipi_i2c.sh -r  outio2_rvs
-./mv_mipi_i2c.sh -w  outio2_rvs [param1]
+./mv_mipi_i2c_new.sh -r  outio2_rvs
+./mv_mipi_i2c_new.sh -w  outio2_rvs [param1]
 
-./mv_mipi_i2c.sh -r  lanenum
-./mv_mipi_i2c.sh -w  lanenum  [2/4]
+./mv_mipi_i2c_new.sh -r  lanenum
+./mv_mipi_i2c_new.sh -w  lanenum  [2/4]
 ### Special function
-./mv_mipi_i2c.sh -r  snsreg  [SensorAddr]
+./mv_mipi_i2c_new.sh -r  snsreg  [SensorAddr]
 
-./mv_mipi_i2c.sh -r framecount
+./mv_mipi_i2c_new.sh -r framecount
+
+./mv_mipi_i2c_new.sh -r trgmodecap
+
+./mv_mipi_i2c_new.sh -r minwh
+./mv_mipi_i2c_new.sh -r model
+
+./mv_mipi_i2c_new.sh -r temp
+
+./mv_mipi_i2c_new.sh -r exptime_range
+
+./mv_mipi_i2c_new.sh -r osdmode
+./mv_mipi_i2c_new.sh -w osdmode [0/1]
+
+./mv_mipi_i2c_new.sh -r readmodecap
+
+./mv_mipi_i2c_new.sh -r readmode
+./mv_mipi_i2c_new.sh -w readmode [0/1/2]
 
 COMMENT_SAMPLE
 
@@ -214,7 +227,7 @@ I2C_ADDR=0x3b;
 
 print_usage()
 {
-	echo "Usage:  ./mv_mipi_i2c.sh [-r/w]  [function name] [param1] [param2 ] [param3] [param4] -b bus"
+	echo "Usage:  ./mv_mipi_i2c_new.sh [-r/w]  [function name] [param1] [param2 ] [param3] [param4] -b bus"
 	echo "options:"
 	echo "    -r                       read "
 	echo "    -w                       write"
@@ -247,6 +260,10 @@ System_reboot=0x001C;
 Time_stamp=0x0020;
 Error_code=0x0024;
 Format_Cap=0x0028;
+ReadMode_Cap=0x002C;
+TriggerMode_Cap=0x0030;
+LaneNum_Cap=0x0034;
+Temp_K=0x0058;
 
 Image_Acquisition=0x400;
 Trigger_Mode=0x404;
@@ -257,7 +274,7 @@ Trigger_Software=0x414;
 Trigger_Count=0x418;
 I2C_Addr=0x41C;
 I2C_Port_Sel=0x420;
-MCU_Bypass=0x424;
+
 User_overlay_enable=0x428;
 User_overlay_zone0=0x42C;
 User_overlay_zone1=0x430;
@@ -273,7 +290,8 @@ Sensor_Reg_Val=0x454;
 Slave_mode=0x460;
 Sensor_Frame_Count=0x464;
 Out_Frame_Count=0x468;
-
+Trigger_Cycle_Min=0x46C;
+Trigger_Cycle_Max=0x470;
 
 Test_Image_Selector=0x800;
 Pixel_Format=0x804;
@@ -292,6 +310,10 @@ BLC_Mode=0x834;
 ReadOut_Mode=0x838;
 Lane_Num=0x83C;
 MIPI_DataRate=0x840;
+MIN_ROI_Width=0x844;
+MIN_ROI_Height=0x848;
+FrameRate_Ex=0x850;
+OSD_Mode=0x854;
 
 ISP_module_ctrl=0xC00;
 Exposure_Mode=0xC04;
@@ -322,6 +344,8 @@ DPC_Start=0xC64;
 DPC_Status=0xC68;
 DPC_Count=0xC6C;
 AAROI_enable=0xC80;
+Max_Exp_time=0xC8C;
+Min_Exp_time=0xC90;
 
 Trigger_Delay=0x1000;
 Trigger_Activation=0x1004;
@@ -475,6 +499,9 @@ read_model()
     "34101")
         printf "model is RAW-MIPI-SC535M\n";
     ;;
+    "16386")
+        printf "model is MV-MIPI-GMAX4002M\n";
+    ;;
     *)
      printf " model %8x not recognized\n" $model;
      ;;
@@ -522,6 +549,14 @@ read_fmtcap()
     printf "fmtcap is 0x%x \n" $fmtcap;
 }
 
+read_lanecap()
+{
+    local lanecap=0;
+    typeset -i lanecap;
+	lanecap=$(./i2c_4read $I2C_DEV $I2C_ADDR $LaneNum_Cap 2>/dev/null);
+    printf "lane number cap is 0x%x \n" $lanecap;
+}
+
 write_factoryparam()
 {
     local res=0;
@@ -555,20 +590,6 @@ write_i2caddr()
     local res=0;
 	res=$(./i2c_4write $I2C_DEV $I2C_ADDR $I2C_Addr $PARAM1);
     printf "w i2c addr is 0x%02x \n" $PARAM1;
-}
-
-read_mcubypass()
-{
-    local value=0;
-    typeset -i value;
-	value=$(./i2c_4read $I2C_DEV $I2C_ADDR $MCU_Bypass 2>/dev/null);
-    printf "r MCU bypass mode 0x%02x \n" $value;
-}
-write_mcubypass()
-{
-    local res=0;
-	res=$(./i2c_4write $I2C_DEV $I2C_ADDR $MCU_Bypass $PARAM1);
-    printf "w MCU bypass mode 0x%02x,camera will reboot \n" $PARAM1;
 }
 
 read_i2cport()
@@ -1356,6 +1377,106 @@ read_framecount()
     out_count=$(./i2c_4read $I2C_DEV $I2C_ADDR $Out_Frame_Count 2>/dev/null);
     printf "r Sensor framecount is %d , Out framecount is %d\n" $sns_count $out_count;
 }
+
+read_trgmodecap()
+{
+    local value=0;
+    typeset -i value;
+	value=$(./i2c_4read $I2C_DEV $I2C_ADDR $TriggerMode_Cap 2>/dev/null);
+    printf "r trigger mode capbility is 0x%x \n" $value;
+}
+
+read_trgcycle()
+{
+    local cycle_min=0;
+    local cycle_max=0;
+    typeset -i cycle_min;
+    typeset -i cycle_max;
+	cycle_min=$(./i2c_4read $I2C_DEV $I2C_ADDR $Trigger_Cycle_Min 2>/dev/null);
+    cycle_max=$(./i2c_4read $I2C_DEV $I2C_ADDR $Trigger_Cycle_Max 2>/dev/null);
+    printf "r trigger cycle min is %d us,trigger cycle max is %d us\n" $cycle_min $cycle_max;
+}
+
+read_minwh()
+{
+    local width=0;
+    local height=0;
+    typeset -i width;
+    typeset -i height;
+    width=$(./i2c_4read $I2C_DEV $I2C_ADDR $MIN_ROI_Width 2>/dev/null);
+    height=$(./i2c_4read $I2C_DEV $I2C_ADDR $MIN_ROI_Height 2>/dev/null);
+    printf "r ROI min width is %d height is %d\n" $width $height;
+}
+read_temp()
+{
+    local value=0
+    local kelvin=0
+    local celsius=0
+
+    # Read temperature value, unit is 100 times Kelvin
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $Temp_K 2>/dev/null)
+
+    # Calculate the actual Kelvin temperature
+    kelvin=$(echo "scale=2; $value / 100" | bc)
+
+    # Calculate Celsius temperature
+    celsius=$(echo "scale=2; $kelvin - 273.15" | bc)
+
+    # Print temperature values
+    printf "r temperature is %.2f K (%.2f °C)\n" $kelvin $celsius
+}
+
+read_exptime_range()
+{
+    local value=0;
+    local min=0;
+    local max=0;
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $Min_Exp_time 2>/dev/null);
+    #0.01us as a unit
+    min=$(echo "$value * 0.01" | bc);
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $Max_Exp_time 2>/dev/null);
+    max=$value;
+    printf "r exposure time range is: %.2f us ~ %d us\n" $min $max
+}
+
+read_osdmode()
+{
+    local value=0;
+    typeset -i value;
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $OSD_Mode 2>/dev/null);
+    printf "r osd mode is %d \n" $value;
+}
+
+write_osdmode()
+{
+    local res=0;
+    res=$(./i2c_4write $I2C_DEV $I2C_ADDR $OSD_Mode $PARAM1);
+    printf "w osd mode is %d \n" $PARAM1;
+}
+
+read_readmodecap()
+{
+    local value=0;
+    typeset -i value;
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $ReadMode_Cap 2>/dev/null);
+    printf "r read mode capbility is 0x%x \n" $value;
+}
+
+read_readmode()
+{
+    local value=0;
+    typeset -i value;
+    value=$(./i2c_4read $I2C_DEV $I2C_ADDR $ReadOut_Mode 2>/dev/null);
+    printf "r read mode is 0x%x \n" $value;
+}
+
+write_readmode()
+{
+    local res=0;
+    res=$(./i2c_4write $I2C_DEV $I2C_ADDR $ReadOut_Mode $PARAM1);
+    printf "w read mode is 0x%x \n" $PARAM1;
+}
+
 <<'COMMENT_SAMPLE'
 read_fun()
 {
@@ -1451,9 +1572,6 @@ if [ ${MODE} = "read" ] ; then
             ;;
         "i2caddr")
             read_i2caddr;
-            ;;
-        "mcubypass")
-            read_mcubypass;
             ;;
         "i2cport")
             read_i2cport;
@@ -1603,6 +1721,33 @@ if [ ${MODE} = "read" ] ; then
         "framecount")
             read_framecount;
             ;;
+        "trgmodecap")
+            read_trgmodecap;
+            ;;
+        "trgcycle")
+            read_trgcycle;
+            ;;
+        "minwh")
+            read_minwh;
+            ;;
+        "lanecap")
+            read_lanecap;
+            ;;
+        "temp")
+            read_temp;
+            ;;
+        "exptime_range")
+            read_exptime_range;
+            ;;
+        "osdmode")
+            read_osdmode;
+            ;;
+        "readmodecap")
+            read_readmodecap;
+            ;;
+        "readmode")
+            read_readmode;
+            ;;
         *)
         echo "NOT SUPPORTED!";
         ;;
@@ -1622,9 +1767,6 @@ if [ ${MODE} = "write" ] ; then
 			;;
         "i2caddr")
             write_i2caddr;
-            ;;
-        "mcubypass")
-            write_mcubypass;
             ;;
         "i2cport")
             write_i2cport;
@@ -1760,6 +1902,12 @@ if [ ${MODE} = "write" ] ; then
             ;;
         "slavemode")
             write_slavemode;
+            ;;
+        "osdmode")
+            write_osdmode;
+            ;;
+        "readmode")
+            write_readmode;
             ;;
         *)
         echo "NOT SUPPORTED!";

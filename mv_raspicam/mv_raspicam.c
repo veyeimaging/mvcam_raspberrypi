@@ -84,6 +84,9 @@ struct sensor_def
 	int num_stop_regs;
 	struct sensor_regs *roi;
 	int num_roi_regs;
+    
+    struct sensor_regs *readmode;
+	int num_readmode_regs;
 
 	uint8_t i2c_addr;		// Device I2C slave address
 	int i2c_addressing;		// Length of register address values
@@ -105,7 +108,8 @@ struct sensor_def
 
 	uint16_t exposure_reg;
 	int exposure_reg_num_bits;
-
+    
+    
 	uint16_t vts_reg;
 	int vts_reg_num_bits;
 
@@ -127,7 +131,7 @@ struct sensor_def
 #include "raw_ar0234_modes.h"
 #include "raw_imx462_modes.h"
 #include "raw_sc535_modes.h"
-
+#include "raw_gmax4002_modes.h"
 
 const struct sensor_def *sensors[] = {
 	&mv_imx296,
@@ -140,6 +144,7 @@ const struct sensor_def *sensors[] = {
     &raw_ar0234,
     &raw_imx462,
     &raw_sc535,
+    &mv_gmax4002,
 	NULL
 };
 
@@ -174,6 +179,7 @@ enum {
 	CommandProcessingYUV,
 	CommandOutputYUV,
     CommandROI,
+    CommandReadmode,    
 };
 
 
@@ -209,6 +215,7 @@ static COMMAND_LIST cmdline_commands[] =
 	{ CommandProcessingYUV,	"-processing_yuv", "PY",  "Pass processed YUV images into an image processing function", 0 },
 	{ CommandOutputYUV,	"-output_yuv",  "oY", "Set the output filename for YUV data", 0 },
     { CommandROI,	"-roi",  "roi", "Set the roi area of camera <'x,y,w,h'>", 0 },
+    { CommandReadmode,	"-readmode",  "rd", "set readmode, 0: normal; 1: binning", 0 },    
 };
 
 static int cmdline_commands_size = sizeof(cmdline_commands) / sizeof(cmdline_commands[0]);
@@ -265,6 +272,7 @@ typedef struct {
 	int processing_yuv;
     int use_roi;
     SENSOR_ROI_T sensor_roi;
+    int readmode;
 } RASPIRAW_PARAMS_T;
 
 typedef struct {
@@ -515,6 +523,30 @@ void set_camera_roi(const struct sensor_def *sensor,RASPIRAW_PARAMS_T * pcfg)
     
 	close(fd);
     
+}
+
+void set_camera_readmode(const struct sensor_def *sensor,int readmode)
+{
+    if(sensor->readmode == NULL)
+        return;
+    
+	int fd;
+    sensor->readmode[0].data= readmode;
+	fd = open(i2c_device_name, O_RDWR);
+	if (!fd)
+	{
+		vcos_log_error("Couldn't open I2C device");
+		return;
+	}
+	if (ioctl(fd, I2C_SLAVE_FORCE, sensor->i2c_addr) < 0)
+	{
+		vcos_log_error("Failed to set I2C address");
+		return;
+	}
+    
+	send_regs(fd, sensor, sensor->readmode, sensor->num_readmode_regs);
+    vcos_log_error("stop streaming!");
+	close(fd);
 }
 
 /**
@@ -1169,6 +1201,14 @@ static int parse_cmdline(int argc, char **argv, RASPIRAW_PARAMS_T *cfg)
 					cfg->sensor_roi.width, cfg->sensor_roi.height);
 				break;
 			}
+            case CommandReadmode:
+            {
+                if (sscanf(argv[i + 1], "%d", &cfg->readmode) != 1)
+					valid = 0;
+				else
+					i++;
+				break;
+            }
 			default:
 				valid = 0;
 				break;
@@ -1358,7 +1398,7 @@ int main(int argc, char** argv) {
 	cfg.opacity = 255;
 	cfg.fullscreen = 1;
     cfg.use_roi = 0;
-    
+    cfg.readmode = 0;
 	signal_Init();
     //may delete ?
 	bcm_host_init();
@@ -1386,6 +1426,7 @@ int main(int argc, char** argv) {
 		vcos_log_error("No sensor found. Aborting");
 		return -1;
 	}
+    
 	if (cfg.mode >= 0 && cfg.mode < sensor->num_modes)
 	{
 		sensor_mode = &sensor->modes[cfg.mode];
@@ -1396,6 +1437,14 @@ int main(int argc, char** argv) {
 		vcos_log_error("Invalid mode %d - aborting", cfg.mode);
 		return -2;
 	}
+
+    //if(cfg.readmode)
+    {
+        
+        set_camera_readmode(sensor,cfg.readmode);
+        vcos_log_error("set readmode %d",cfg.readmode);
+    }
+    
     //update width and height if use roi
    // if(cfg.use_roi)
     {
@@ -2238,6 +2287,7 @@ void update_regs(const struct sensor_def *sensor, struct mode_def *mode, int hfl
 			}
 		}
 	}
+
 	if (sensor->vts_reg && exposure != -1 && exposure >= mode->min_vts)
 	{
 		if (exposure < 0 || exposure >= (1<<sensor->vts_reg_num_bits))

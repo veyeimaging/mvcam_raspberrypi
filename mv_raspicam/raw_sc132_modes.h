@@ -96,7 +96,8 @@ struct sensor_def raw_sc132 = {
 
       .roi = raw_sc132_roi_regs,
 	  .num_roi_regs = NUM_ELEMENTS(raw_sc132_roi_regs),
-	  
+	  .readmode = NULL,
+	  .num_readmode_regs = 0,
       .i2c_addr =             0x3b,
       .i2c_addressing =       2,
       .i2c_data_size =        4,

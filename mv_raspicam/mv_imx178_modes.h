@@ -117,7 +117,10 @@ struct sensor_def mv_imx178 = {
       .num_stop_regs =        NUM_ELEMENTS(mv_imx178_stop),
       .roi = mv_imx178_roi_regs,
 	  .num_roi_regs = NUM_ELEMENTS(mv_imx178_roi_regs),
-	  
+
+      .readmode = NULL,
+	  .num_readmode_regs = 0,
+      
       .i2c_addr =             0x3b,//7bit mode
       .i2c_addressing =       2,
       .i2c_data_size =        4,

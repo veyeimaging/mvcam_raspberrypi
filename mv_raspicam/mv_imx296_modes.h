@@ -93,7 +93,8 @@ struct sensor_def mv_imx296 = {
 
       .roi = mv_imx296_roi_regs,
 	  .num_roi_regs = NUM_ELEMENTS(mv_imx296_roi_regs),
-	  
+	  .readmode = NULL,
+	  .num_readmode_regs = 0,
       .i2c_addr =             0x3b,
       .i2c_addressing =       2,
       .i2c_data_size =        4,

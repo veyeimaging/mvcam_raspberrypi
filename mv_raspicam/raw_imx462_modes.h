@@ -133,7 +133,8 @@ struct sensor_def raw_imx462 = {
 
       .roi = raw_imx462_roi_regs,
 	  .num_roi_regs = NUM_ELEMENTS(raw_imx462_roi_regs),
-	  
+	  .readmode = NULL,
+	  .num_readmode_regs = 0,
       .i2c_addr =             0x3b,
       .i2c_addressing =       2,
       .i2c_data_size =        4,
